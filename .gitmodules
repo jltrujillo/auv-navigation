@@ -1,0 +1,3 @@
+[submodule "vendors/mt"]
+	path = vendors/mt
+	url = https://github.com/garp-uclv/mt.git

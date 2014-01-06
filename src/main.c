@@ -138,7 +138,54 @@ int main(int argc, char *argv[]) {
 
 		daemon_log(LOG_INFO, "Sucessfully started");
 
+		/* Prepare for select() on the signal fd */
+		FD_ZERO(&fds);
+		fd = daemon_signal_fd();
+		FD_SET(fd, &fds);
 
+		while (!quit) {
+			fd_set fds2 = fds;
+
+			/* Wait for an incoming signal */
+			if (select(FD_SETSIZE, &fds2, 0, 0, 0) < 0) {
+
+				/* If we've been interrupted by an incoming signal, continue */
+				if (errno == EINTR)
+					continue;
+
+				daemon_log(LOG_ERR, "select(): %s", strerror(errno));
+				break;
+			}
+
+			/* Check if a signal has been recieved */
+			if (FD_ISSET(fd, &fds2)) {
+				int sig;
+
+				/* Get signal */
+				if ((sig = daemon_signal_next()) <= 0) {
+					daemon_log(LOG_ERR, "daemon_signal_next() failed: %s",
+							strerror(errno));
+					break;
+				}
+
+				/* Dispatch signal */
+				switch (sig) {
+
+				case SIGINT:
+				case SIGQUIT:
+				case SIGTERM:
+					daemon_log(LOG_WARNING, "Got SIGINT, SIGQUIT or SIGTERM.");
+					quit = 1;
+					break;
+
+				case SIGHUP:
+					daemon_log(LOG_INFO, "Got a HUP");
+					daemon_exec("/", NULL, "/bin/ls", "ls", (char*) NULL);
+					break;
+
+				}
+			}
+		}
 
 		/* Do a cleanup */
 		finish: daemon_log(LOG_INFO, "Exiting...");
@@ -148,3 +195,4 @@ int main(int argc, char *argv[]) {
 
 		return 0;
 	}
+}

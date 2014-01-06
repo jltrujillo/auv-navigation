@@ -8,5 +8,5 @@ supervición. Este proyecto ofrece una aplicación para suplir el nivel táctico
 
 El lenguaje de programación seleccionado para este proyecto es C dado que
 aunque la plataforma de ejecución definida en la etapa de diseño es cualquier
-sistema compatible con el estándard POSIX.1003 el necesario que el producto
+sistema compatible con el estándard POSIX.1003 es necesario que el producto
 sea portable a microcontroladores.

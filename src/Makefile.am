@@ -19,7 +19,7 @@
 # Opciones para el compilador del lenguaje C (apegarse al estándard C99,
 # mostrar todas las alertas y compilar con facilidades para el eliminador de
 # fallas)
-AM_CFLAGS = -std=c99 -Wall -g
+AM_CFLAGS = -std=c99 -Wall -Werror
 
 # Opciones para el pre-procesador del compilador del lenguaje C
 AM_CPPFLAGS = -I$(top_srcdir)/include

@@ -23,7 +23,8 @@
 
 #include "garp/mti-g.h"
 
-void mti_g_init(config_setting_t * config, struct mti_g * mti_g)
+void mti_g_init(struct mti_g * mti_g, config_setting_t * config,
+		struct imu * imu_ptr, struct vector3d * gps_ptr)
 {
 	int err;
 	char * device;
@@ -33,6 +34,10 @@ void mti_g_init(config_setting_t * config, struct mti_g * mti_g)
 
 	mti_g->fd = open(device, O_RDONLY);
 	assert(mti_g->fd != -1);
+
+	/* Mapear los medios de almacenamiento a utilizar */
+	mti_g->imu_ptr = imu_ptr;
+	mti_g->gps_ptr = gps_ptr;
 }
 
 void mti_g_handle_request(struct mti_g * mti_g_ptr)

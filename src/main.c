@@ -163,13 +163,10 @@ int main(int argc, char *argv[]) {
 			goto finish;
 		}
 
-		/* inicializar el controlador de estado de la MTi-G */
+		/* Inicializar el controlador de estado de la MTi-G, enlazando
+		 * la RTDB como area de almacenamiento */
 		setting = config_lookup(&cfg, "mti_g");
-		mti_g_init(setting, &mti_g);
-
-		/* enlazar el controlador de estado de la MTi-G con la RTDB */
-		mti_g.imu_ptr = &(rtdb.imu);
-		mti_g.gps_ptr = &(rtdb.gps);
+		mti_g_init(&mti_g, setting, &(rtdb.imu), &(rtdb.gps));
 
 		/* Send OK to parent process */
 		daemon_retval_send(0);

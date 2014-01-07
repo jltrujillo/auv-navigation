@@ -48,10 +48,17 @@ struct mti_g {
 
 /*! Inicializa el controlador de estado de la MTi-G a partir de configuración.
  *
- * @param config Puntero al elemento de configuración empleado.
+ * Basicamente esta funcion abre el dispositivo identificado por la llave
+ * "device" en modo lectura y establece el atributo "mti_g.fd" al descriptor
+ * de fichero asociado.
+ *
  * @param mti_g Puntero al controlador de estado de la MTi-G a inicializar.
+ * @param config Puntero al elemento de configuración empleado.
+ * @param imu_ptr Puntero al medio de almacenamiento de datos de la IMU.
+ * @param gps_ptr Puntero al medio de almacenamiento de datos del GPS.
  */
-void mti_g_init(config_setting_t * config, struct mti_g * mti_g);
+void mti_g_init(struct mti_g * mti_g, config_setting_t * config,
+		struct imu * imu_ptr, struct vector3d * gps_ptr);
 
 /*! Procesa un pedido realizado por una MTi-G
  *

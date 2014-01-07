@@ -19,8 +19,7 @@
 #ifndef _GARP_IMU_H_
 #define _GARP_IMU_H_
 
-/** Estructura que representa una Unidad de Mediciones Inerciales
- */
+/*! Estructura que representa una Unidad de Mediciones Inerciales (IMU). */
 struct imu {
 
 };

@@ -1,4 +1,6 @@
 /*
+ * Punto de entrada de la aplicacion de navegacion
+ *
  * Derechos Reservados © 2013 GARP y colaboradores
  *
  * Este es un Software Libre; como tal redistribuirlo y/o modificarlo está
@@ -158,7 +160,7 @@ int main(int argc, char *argv[]) {
 		}
 
 		/* inicializar el controlador de estado de la MTi-G */
-		setting = config_lookup(&cfg, "mti-g");
+		setting = config_lookup(&cfg, "mti_g");
 		mti_g_init(setting, &mti_g);
 
 		/* Send OK to parent process */

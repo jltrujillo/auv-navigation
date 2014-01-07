@@ -1,4 +1,5 @@
-/* Procesador de Mensajes de MTi-G
+/*
+ * Procesador de Mensajes de MTi-G
  *
  * Derechos Reservados © 2013 GARP y colaboradores
  *

@@ -16,6 +16,11 @@
  * Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/*!
+ * \addtogroup garp_common "Elementos Comunes"
+ * @{
+ */
+
 #ifndef _GARP_IMU_H_
 #define _GARP_IMU_H_
 
@@ -33,3 +38,5 @@ struct imu {
 #endif
 
 #endif /* _GARP_IMU_H_ */
+
+/*! @} */

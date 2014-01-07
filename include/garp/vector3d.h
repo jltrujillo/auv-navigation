@@ -16,6 +16,11 @@
  * Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/*!
+ * \addtogroup garp_common "Elementos Comunes"
+ * @{
+ */
+
 #ifndef _GARP_VECTOR3D_H_
 #define _GARP_VECTOR3D_H_
 
@@ -35,3 +40,5 @@ struct vector3d {
 #endif
 
 #endif /* _GARP_VECTOR3D_H_ */
+
+/*! @} */

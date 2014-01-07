@@ -16,6 +16,11 @@
  * Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/*!
+ * \addtogroup garp_common "Base de Datos de Tiempo Real (RTDB)"
+ * @{
+ */
+
 #ifndef _GARP_RTDB_H_
 #define _GARP_RTDB_H_
 
@@ -37,3 +42,5 @@ struct rtdb {
 #endif
 
 #endif /* _GARP_RTDB_H_ */
+
+/*! @} */

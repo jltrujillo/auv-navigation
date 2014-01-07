@@ -16,6 +16,11 @@
  * Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/*!
+ * \addtogroup garp_mti_g "Controlador de estado para MTi-G de Xsens"
+ * @{
+ */
+
 #ifndef _GARP_MTI_G_H_
 #define _GARP_MTI_G_H_
 
@@ -34,7 +39,10 @@ struct mti_g {
 	/*! Descriptor de fichero asociado a la MTi-G. */
 	int fd;
 
+	/*! Puntero al medio de almacenamiento de la información de la IMU */
 	struct imu * imu_ptr;
+
+	/*! Puntero al medio de almacenamiento de la información del GPS */
 	struct vector3d * gps_ptr;
 };
 
@@ -56,3 +64,5 @@ void mti_g_handle_request(struct mti_g * mti_g_ptr);
 #endif
 
 #endif /* _GARP_MTI_G_H_ */
+
+/*! @} */

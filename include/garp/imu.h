@@ -19,9 +19,17 @@
 #ifndef _GARP_IMU_H_
 #define _GARP_IMU_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*! Estructura que representa una Unidad de Mediciones Inerciales (IMU). */
 struct imu {
 
 };
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _GARP_IMU_H_ */

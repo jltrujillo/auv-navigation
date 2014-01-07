@@ -24,6 +24,10 @@
 #include "garp/imu.h"
 #include "garp/vector3d.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*! Controlador de estado de la MTi-G.
  */
 struct mti_g {
@@ -46,5 +50,9 @@ void mti_g_init(config_setting_t * config, struct mti_g * mti_g);
  * @param mti_g_ptr Puntero al controlador de estado de la MTi-G.
  */
 void mti_g_handle_request(struct mti_g * mti_g_ptr);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _GARP_MTI_G_H_ */

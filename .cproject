@@ -29,8 +29,9 @@
 							</tool>
 							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.autogen.1487643159" name="autogen.sh" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.autogen"/>
 							<tool id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gcc.2025218458" name="GCC C Compiler" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.tool.gcc">
-								<option id="gnu.c.compiler.option.include.paths.1835609868" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+								<option id="gnu.c.compiler.option.include.paths.1835609868" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/auv-navigation/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;F:\Yeiniel\workspace\projects\auv\tools\libconfig-1.4.9\lib&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1153103360" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>

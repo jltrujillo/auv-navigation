@@ -19,11 +19,19 @@
 #ifndef _GARP_VECTOR3D_H_
 #define _GARP_VECTOR3D_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*! Vector Tridimencional. */
 struct vector3d {
 	double x;
 	double y;
 	double z;
 };
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _GARP_VECTOR3D_H_ */

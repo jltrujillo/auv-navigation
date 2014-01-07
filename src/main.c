@@ -159,7 +159,7 @@ int main(int argc, char *argv[]) {
 		{
 			daemon_log(LOG_ERR, "%s:%d - %s\n", config_error_file(&cfg),
 				config_error_line(&cfg), config_error_text(&cfg));
-			daemon_retval_send(EXIT_FAILURE);
+			daemon_retval_send(4);
 			goto finish;
 		}
 

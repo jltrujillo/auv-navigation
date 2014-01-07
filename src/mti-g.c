@@ -27,7 +27,7 @@ void mti_g_init(struct mti_g * mti_g, config_setting_t * config,
 		struct imu * imu_ptr, struct vector3d * gps_ptr)
 {
 	int err;
-	char * device;
+	const char * device;
 
 	err = config_setting_lookup_string(config, "device", &device);
 	assert(err);

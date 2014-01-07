@@ -30,6 +30,12 @@
 #include <libdaemon/dpid.h>
 #include <libdaemon/dexec.h>
 
+#include <libconfig.h>
+
+#include "garp/mti-g.h"
+
+const char * CONFIG_FILE = "./etc/auv-navigation.cfg";
+
 /** Punto de entrada de la aplicacion de navegacion.
  * @return Estado de la aplicacion al terminar.
  */
@@ -105,6 +111,12 @@ int main(int argc, char *argv[]) {
 		int fd, quit = 0;
 		fd_set fds;
 
+		config_t cfg;
+		config_setting_t *setting;
+
+		/* Controlador de estado de la MTi-G */
+		struct mti_g mti_g;
+
 		/* Close FDs */
 		if (daemon_close_all(-1) < 0) {
 			daemon_log(LOG_ERR, "Failed to close all file descriptors: %s",
@@ -133,15 +145,33 @@ int main(int argc, char *argv[]) {
 
 		/*... do some further init work here */
 
+		/* cargar la configuración de la aplicación */
+		config_init(&cfg);
+
+		/* Read the file. If there is an error, report it and exit. */
+		if(! config_read_file(&cfg, CONFIG_FILE))
+		{
+			daemon_log(LOG_ERR, "%s:%d - %s\n", config_error_file(&cfg),
+				config_error_line(&cfg), config_error_text(&cfg));
+			daemon_retval_send(EXIT_FAILURE);
+			goto finish;
+		}
+
+		/* inicializar el controlador de estado de la MTi-G */
+		setting = config_lookup(&cfg, "mti-g");
+		mti_g_init(setting, &mti_g);
+
 		/* Send OK to parent process */
 		daemon_retval_send(0);
 
 		daemon_log(LOG_INFO, "Sucessfully started");
 
-		/* Prepare for select() on the signal fd */
+		/* Prepare for select() on the signals */
 		FD_ZERO(&fds);
 		fd = daemon_signal_fd();
 		FD_SET(fd, &fds);
+
+		FD_SET(mti_g.fd, &fds);
 
 		while (!quit) {
 			fd_set fds2 = fds;
@@ -185,7 +215,14 @@ int main(int argc, char *argv[]) {
 
 				}
 			}
+
+			/* Procesar señales desde la MTi-G */
+			if (FD_ISSET(mti_g.fd, &fds2)) {
+				mti_g_handle_request(&mti_g);
+			}
 		}
+
+		config_destroy(&cfg);
 
 		/* Do a cleanup */
 		finish: daemon_log(LOG_INFO, "Exiting...");

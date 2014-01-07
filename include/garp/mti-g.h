@@ -19,14 +19,32 @@
 #ifndef _GARP_MTI_G_H_
 #define _GARP_MTI_G_H_
 
+#include <libconfig.h>
+
 #include "garp/imu.h"
 #include "garp/vector3d.h"
 
 /*! Controlador de estado de la MTi-G.
  */
 struct mti_g {
+	/*! Descriptor de fichero asociado a la MTi-G. */
+	int fd;
+
 	struct imu * imu_ptr;
 	struct vector3d * gps_ptr;
 };
+
+/*! Inicializa el controlador de estado de la MTi-G a partir de configuración.
+ *
+ * @param config Puntero al elemento de configuración empleado.
+ * @param mti_g Puntero al controlador de estado de la MTi-G a inicializar.
+ */
+void mti_g_init(config_setting_t * config, struct mti_g * mti_g);
+
+/*! Procesa un pedido realizado por una MTi-G
+ *
+ * @param mti_g_ptr Puntero al controlador de estado de la MTi-G.
+ */
+void mti_g_handle_request(struct mti_g * mti_g_ptr);
 
 #endif /* _GARP_MTI_G_H_ */

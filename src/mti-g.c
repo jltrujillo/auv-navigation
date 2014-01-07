@@ -17,14 +17,24 @@
  * Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <assert.h>
+#include <fcntl.h>
+
 #include "garp/mti-g.h"
 
-/*! Procesa un pedido realizado por una MTi-G
- *
- * @param fd Descriptor de fichero asociado a la MTi-G.
- * @param mti_g_ptr Puntero al controlador de estado de la MTi-G.
- */
-void mti_g_process_request(int fd, struct mti_g * mti_g_ptr)
+void mti_g_init(config_setting_t * config, struct mti_g * mti_g)
 {
+	int err;
+	char * device;
 
+	err = config_setting_lookup_string(config, "device", &device);
+	assert(err);
+
+	mti_g->fd = open(device, O_RDONLY);
+	assert(mti_g->fd != -1);
+}
+
+void mti_g_handle_request(struct mti_g * mti_g_ptr)
+{
+	return;
 }

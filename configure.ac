@@ -55,9 +55,16 @@ LT_INIT
 # Prueba si la librería "daemon" está disponible.
 AC_CHECK_LIB([daemon], [daemon_pid_file_kill_wait],,
 	AC_MSG_ERROR([Error: libdaemon no esta disponible en esta plataforma.]))
+	
+# Prueba si la librería "config" está disponible.
+AC_CHECK_LIB([config], [config_read_file],,
+	AC_MSG_ERROR([Error: libconfig no esta disponible en esta plataforma.]))
 
 AC_CHECK_HEADERS([libdaemon/dfork.h libdaemon/dsignal.h libdaemon/dlog.h libdaemon/dpid.h libdaemon/dexec.h],,
 	AC_MSG_ERROR([Error: ficheros de cabecera de libdaemon no estan disponibles en esta plataforma.]))
+
+AC_CHECK_HEADERS([libconfig.h],,
+	AC_MSG_ERROR([Error: ficheros de cabecera de libconfig no estan disponibles en esta plataforma.]))
 
 # Checkea si el programa doxygen se encuentra en un directorio accesible
 # (que este registrado en la variable de entorno PATH). Si se encuentra

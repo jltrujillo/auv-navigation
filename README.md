@@ -20,3 +20,8 @@ La aplicación de navegación emplea la librería "libdaemon"
 un demonio. En sistemas Debian y derivados puede instalarla directamente desde
 un repositorio de paquetes empleando el comando
 "apt-get install libdaemon-dev libdaemon0".
+
+Otra librería empleada por la aplicacion de navegación es "libconfig", la cual
+es empleada para configurar la aplicacion al inicio. En sistemas Debian y 
+derivados puede instalarla directamente desde un repositorio de paquetes 
+empleando el comando "apt-get install libconfig8-dev libconfig8".

@@ -16,4 +16,4 @@
 ## Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
 ###############################################################################
 
-nobase_include_HEADERS = garp/imu.h
+nobase_include_HEADERS = garp/imu.h garp/vector3d.h garp/mti-g.h garp/rtdb.h

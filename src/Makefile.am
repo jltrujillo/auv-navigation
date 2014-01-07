@@ -26,4 +26,4 @@ AM_CPPFLAGS = -I$(top_srcdir)/include
 
 bin_PROGRAMS = auv-navigation
 
-auv_navigation_SOURCES = main.c
+auv_navigation_SOURCES = main.c mti-g.c

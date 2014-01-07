@@ -34,6 +34,7 @@
 
 #include <libconfig.h>
 
+#include "garp/rtdb.h"
 #include "garp/mti-g.h"
 
 const char * CONFIG_FILE = "./etc/auv-navigation.cfg";
@@ -116,6 +117,9 @@ int main(int argc, char *argv[]) {
 		config_t cfg;
 		config_setting_t *setting;
 
+		/* Base de Datos de Tiempo Real */
+		struct rtdb rtdb;
+
 		/* Controlador de estado de la MTi-G */
 		struct mti_g mti_g;
 
@@ -162,6 +166,10 @@ int main(int argc, char *argv[]) {
 		/* inicializar el controlador de estado de la MTi-G */
 		setting = config_lookup(&cfg, "mti_g");
 		mti_g_init(setting, &mti_g);
+
+		/* enlazar el controlador de estado de la MTi-G con la RTDB */
+		mti_g.imu_ptr = &(rtdb.imu);
+		mti_g.gps_ptr = &(rtdb.gps);
 
 		/* Send OK to parent process */
 		daemon_retval_send(0);

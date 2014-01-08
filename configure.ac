@@ -43,7 +43,7 @@ AM_INIT_AUTOMAKE([foreign 1.6 -Wall -Werror])
 # si se encuentra instalado gcc (Compilador de C de GNU), a continuación cc
 # (compilador de C de sistemas UNIX) y luego otros compiladores. Establece como
 # valor de la variable de salida CC el compilador encontrado.
-AC_PROG_CC
+AC_PROG_CC_C99
 
 # Esta macro adiciona una serie de nuevos chequeos al fichero ejecutable de
 # configuración de forma tal que el fichero ejecutable libtool generado pueda

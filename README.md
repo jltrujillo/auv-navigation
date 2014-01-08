@@ -8,7 +8,7 @@ supervición. Este proyecto ofrece una aplicación para suplir el nivel táctico
 
 Ambiente de Ejecución
 ---------------------
-El ambiente de ejecución empleado durante el desarrollo del proyecto (y por 
+El ambiente de ejecución empleado durante el desarrollo del proyecto (y por
 tanto el único realmente soportado) es el sistema operativo Debian ejecutandose
 sobre una plataforma compatible con IBM PC. No obstante el objetivo propuesto
 en la fase de diseño es ser compatible con el estándar POSIX.1003.
@@ -22,6 +22,6 @@ un repositorio de paquetes empleando el comando
 "apt-get install libdaemon-dev libdaemon0".
 
 Otra librería empleada por la aplicacion de navegación es "libconfig", la cual
-es empleada para configurar la aplicacion al inicio. En sistemas Debian y 
-derivados puede instalarla directamente desde un repositorio de paquetes 
-empleando el comando "apt-get install libconfig8-dev libconfig8".
+es empleada para configurar la aplicacion al inicio. En sistemas Debian y
+derivados puede instalarla directamente desde un repositorio de paquetes
+empleando el comando "apt-get install libconfig-dev libconfig9".

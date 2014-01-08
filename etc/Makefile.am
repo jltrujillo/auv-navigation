@@ -16,4 +16,4 @@
 ## Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
 ###############################################################################
 
-dist_DATA = auv-navigation.cfg
+sysconf_DATA = auv-navigation.cfg

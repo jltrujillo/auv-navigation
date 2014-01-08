@@ -22,7 +22,8 @@
 AM_CFLAGS = -std=c99 -Wall -Werror
 
 # Opciones para el pre-procesador del compilador del lenguaje C
-AM_CPPFLAGS = -I$(top_srcdir)/include
+AM_CPPFLAGS = -I$(top_srcdir)/include 
+AM_CPPFLAGS += -DCONFIG_FILE="\"$(sysconfdir)/auv-navigation.cfg\""
 
 bin_PROGRAMS = auv-navigation
 

@@ -37,7 +37,13 @@
 #include "garp/rtdb.h"
 #include "garp/mti-g.h"
 
-const char * CONFIG_FILE = "./etc/auv-navigation.cfg";
+/* Truco para que el IDE no se queje por el simbolo CONFIG_FILE el cual
+ * se lo pasa al compilador el Makefile de este directorio. Esto permite
+ * conocer el directorio de ficheros de configuración en tiempo de
+ * compilación. */
+#ifndef CONFIG_FILE
+const char * CONFIG_FILE = "/etc/auv-navigation.cfg";
+#endif
 
 /** Punto de entrada de la aplicacion de navegacion.
  * @return Estado de la aplicacion al terminar.

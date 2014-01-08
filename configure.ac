@@ -22,6 +22,9 @@
 # enviarse los reportes de fallas.
 AC_INIT([auv-navigation], [0.1], [yeiniel@uclv.cu])
 
+# Chequeo de seguridad para que Autoconf encuentre el directorio del proyecto.
+AC_CONFIG_SRCDIR([src/main.c])
+
 # Indica que se emplee las herramientas auxiliares (ejemplo: install-sh,
 # config.sub, config.guess, etc.) que se localizan en el directorio ./build-aux
 # relativo al directorio del proyecto.
@@ -78,7 +81,8 @@ AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([doc/Doxyfile])])
 # Hace que la macro AC_OUTPUT genere cada fichero en la lista al copiar el
 # fichero plantilla (por defecto, un fichero con el mismo nombre y extensión
 # .in) y sustituir las variables de salida de la herramienta de configuración.
-AC_CONFIG_FILES([Makefile etc/Makefile include/Makefile src/Makefile doc/Makefile])
+AC_CONFIG_FILES([Makefile etc/Makefile include/Makefile src/Makefile ])
+AC_CONFIG_FILES([doc/Makefile])
 
 # Genera la herramienta de la linea de comandos config.status y lo ejecuta.
 AC_OUTPUT

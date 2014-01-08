@@ -17,3 +17,4 @@
 ###############################################################################
 
 nobase_include_HEADERS = garp/imu.h garp/vector3d.h garp/mti-g.h garp/rtdb.h
+nobase_include_HEADERS += garp/time-tracker.h

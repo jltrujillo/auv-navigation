@@ -28,3 +28,4 @@ AM_CPPFLAGS += -DCONFIG_FILE="\"$(sysconfdir)/auv-navigation.cfg\""
 bin_PROGRAMS = auv-navigation
 
 auv_navigation_SOURCES = main.c mti-g.c
+auv_navigation_SOURCES += time-tracker.c

@@ -86,7 +86,7 @@ AC_CONFIG_FILES([doc/Makefile])
 
 # Hacer que la macro AC_OUTPUT ejecute el stript configure en cada
 # subdirectorio.
-AC_CONFIG_SUBDIRS([vendor/mt])
+AC_CONFIG_SUBDIRS([vendors/mt])
 
 
 # Genera la herramienta de la linea de comandos config.status y lo ejecuta.

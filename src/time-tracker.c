@@ -56,7 +56,7 @@ void time_tracker_dispose(struct time_tracker * tracker) {
 
 long int _time_tracker_timespec2milisecond(struct timespec * timespec)
 {
-	return (timespec->tv_nsec / 1000000) + (timespec->tv_sec * 1000);
+	return (timespec->tv_nsec / 100000) + (timespec->tv_sec * 10000);
 }
 
 int _time_tracker_serialize(struct time_tracker * tracker) {

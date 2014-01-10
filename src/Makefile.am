@@ -31,4 +31,4 @@ bin_PROGRAMS = auv-navigation
 
 auv_navigation_SOURCES = main.c mti-g.c
 auv_navigation_SOURCES += time-tracker.c
-auv_navigation_LDADD += $(top_builddir)/vendors/mt/lib/libgarpmt.la
+auv_navigation_LDADD = $(top_builddir)/vendors/mt/lib/libgarpmt.la

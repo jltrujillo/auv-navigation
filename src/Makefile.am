@@ -25,7 +25,10 @@ AM_CFLAGS = -std=c99 -Wall -Werror
 AM_CPPFLAGS = -I$(top_srcdir)/include 
 AM_CPPFLAGS += -DCONFIG_FILE="\"$(sysconfdir)/auv-navigation.cfg\""
 
+AM_CPPFLAGS += -I$(top_srcdir)/vendors/mt/include
+
 bin_PROGRAMS = auv-navigation
 
 auv_navigation_SOURCES = main.c mti-g.c
 auv_navigation_SOURCES += time-tracker.c
+auv_navigation_LDADD += $(top_builddir)/vendors/mt/lib/libgarpmt.la

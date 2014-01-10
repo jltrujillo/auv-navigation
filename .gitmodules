@@ -1,3 +1,6 @@
 [submodule "vendors/mt"]
 	path = vendors/mt
 	url = https://github.com/garp-uclv/mt.git
+[submodule "vendors/garpnet"]
+	path = vendors/garpnet
+	url = https://github.com/garp-uclv/garpnet.git

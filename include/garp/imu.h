@@ -24,13 +24,19 @@
 #ifndef _GARP_IMU_H_
 #define _GARP_IMU_H_
 
+#include "garp/vector3d.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /*! Estructura que representa una Unidad de Mediciones Inerciales (IMU). */
 struct imu {
-
+	struct vector3d acc;
+	struct vector3d gyr;
+	struct vector3d mag;
+	struct vector3d euler;
+	struct vector3d vel;
 };
 
 #ifdef __cplusplus

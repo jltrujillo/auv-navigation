@@ -58,7 +58,7 @@ LT_INIT
 # Prueba si la librería "daemon" está disponible.
 AC_CHECK_LIB([daemon], [daemon_pid_file_kill_wait],,
 	AC_MSG_ERROR([Error: libdaemon no esta disponible en esta plataforma.]))
-	
+
 # Prueba si la librería "config" está disponible.
 AC_CHECK_LIB([config], [config_read_file],,
 	AC_MSG_ERROR([Error: libconfig no esta disponible en esta plataforma.]))
@@ -83,6 +83,11 @@ AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([doc/Doxyfile])])
 # .in) y sustituir las variables de salida de la herramienta de configuración.
 AC_CONFIG_FILES([Makefile etc/Makefile include/Makefile src/Makefile ])
 AC_CONFIG_FILES([doc/Makefile])
+
+# Hacer que la macro AC_OUTPUT ejecute el stript configure en cada
+# subdirectorio.
+AC_CONFIG_SUBDIRS([vendor/mt])
+
 
 # Genera la herramienta de la linea de comandos config.status y lo ejecuta.
 AC_OUTPUT

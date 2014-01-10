@@ -3,6 +3,7 @@
 	<name>auv-navigation</name>
 	<comment></comment>
 	<projects>
+		<project>mt</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

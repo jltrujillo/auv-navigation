@@ -26,6 +26,8 @@
 
 #include <libconfig.h>
 
+#include "garp/mt.h"
+
 #include "garp/imu.h"
 #include "garp/vector3d.h"
 
@@ -44,6 +46,13 @@ struct mti_g {
 
 	/*! Puntero al medio de almacenamiento de la información del GPS */
 	struct vector3d * gps_ptr;
+
+	/*! Medio de almacenamiento de mensajes del protocolo MT. */
+	struct mt_message message;
+
+	unsigned char content[260];
+
+	unsigned char status;
 };
 
 /*! Inicializa el controlador de estado de la MTi-G a partir de configuración.

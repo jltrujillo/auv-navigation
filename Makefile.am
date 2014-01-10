@@ -16,7 +16,7 @@
 ## Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
 ###############################################################################
 
-SUBDIRS = etc include src doc
+SUBDIRS = vendor/mt etc include src doc
 
 # "ACLOCAL_AMFLAGS = -I m4" tambien debe ser establecido en el fichero 
 # Makefile.am en el directorio raiz del proyecto porque este proyecto emplea

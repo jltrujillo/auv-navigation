@@ -1,5 +1,5 @@
 /*
- * Punto de entrada de la aplicacion de navegacion
+ * Punto de entrada de la aplicacion de navegación
  *
  * Derechos Reservados © 2013 GARP y colaboradores
  *

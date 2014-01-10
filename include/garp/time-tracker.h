@@ -1,4 +1,5 @@
 /*
+ *
  * Derechos Reservados © 2013 GARP y colaboradores
  *
  * Este es un Software Libre; como tal redistribuirlo y/o modificarlo está
@@ -16,31 +17,27 @@
  * Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
  */
 
-/*!
- * \addtogroup garp_rtdb "Base de Datos de Tiempo Real (RTDB)"
- * @{
- */
+#ifndef _GARP_TIME_TRACKER_H_
+#define _GARP_TIME_TRACKER_H_
 
-#ifndef _GARP_RTDB_H_
-#define _GARP_RTDB_H_
+#include <stdio.h>
 
-#include "garp/imu.h"
-#include "garp/vector3d.h"
+#include <sys/time.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <libconfig.h>
 
-/*! Base de Datos de Tiempo Real. */
-struct rtdb {
-	struct imu imu;
-	struct vector3d gps;
+struct time_tracker {
+	FILE * file;
+
+	int num_items;
+	int current_item;
+
+	struct timespec * items;
+	char * items_string;
 };
 
-#ifdef __cplusplus
-}
-#endif
+void time_tracker_init(struct time_tracker * tracker, config_setting_t * config);
+void time_tracker_dispose(struct time_tracker * tracker);
+void time_tracker_handle(struct time_tracker * tracker);
 
-#endif /* _GARP_RTDB_H_ */
-
-/*! @} */
+#endif /* _GARP_TIME_TRACKER_H_ */

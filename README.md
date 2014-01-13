@@ -4,7 +4,12 @@ Acerca del Proyecto auv-navigation
 La solución de control para un vehículo autónomo subacuatico (AUV) por sus
 siglas en inglés se puede distribuir en 3 niveles: control, navegación y
 supervición. Este proyecto ofrece una aplicación para suplir el nivel táctico
-(navegación) dentro de la solución de control.
+(navegación) dentro de la solución de control. Entre sus funcionalidades se
+encuentran:
+
+ - Soporte para emplear una MTi-G de Xsens como IMU y sensor GPS.
+ - Servidor de datos para el HMI especializado en operaciones de AUV Sharksoft.
+ - Manejador de actualizaciones automaticas para controladores auvcnp2u10.
 
 Ambiente de Ejecución
 ---------------------

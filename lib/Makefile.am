@@ -23,14 +23,17 @@ AM_CFLAGS = -std=c99 -Wall -Werror
 
 # Opciones para el pre-procesador del compilador del lenguaje C
 AM_CPPFLAGS = -I$(top_srcdir)/include 
-AM_CPPFLAGS += -DCONFIG_FILE="\"$(sysconfdir)/auv-navigation.cfg\""
 
 AM_CPPFLAGS += -I$(top_srcdir)/vendors/mt/include
 AM_CPPFLAGS += -I$(top_srcdir)/vendors/garpnet/include
 
-bin_PROGRAMS = auv-navigation
+# Lista de productos de tipo librería que se producen en este directorio pero
+# que no se van a instalar en el sistema una vez que se invoque la herramienta 
+# make con el argumento install.
+noinst_LTLIBRARIES = auv-navigation.la
 
-auv_navigation_SOURCES = auv-navigation.c
-auv_navigation_LDADD = $(top_builddir)/lib/auv-navigation.la
-auv_navigation_LDADD += $(top_builddir)/vendors/mt/lib/libgarpmt.la
-auv_navigation_LDADD += $(top_builddir)/vendors/garpnet/lib/libgarpnet.la
+auv_navigation_la_SOURCES = mti-g.c
+auv_navigation_la_SOURCES += time-tracker.c
+auv_navigation_la_SOURCES += sharksoft.c
+auv_navigation_la_LDADD = $(top_builddir)/vendors/mt/lib/libgarpmt.la
+auv_navigation_la_LDADD += $(top_builddir)/vendors/garpnet/lib/libgarpnet.la

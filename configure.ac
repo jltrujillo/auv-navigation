@@ -81,12 +81,12 @@ AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([doc/Doxyfile])])
 # Hace que la macro AC_OUTPUT genere cada fichero en la lista al copiar el
 # fichero plantilla (por defecto, un fichero con el mismo nombre y extensión
 # .in) y sustituir las variables de salida de la herramienta de configuración.
-AC_CONFIG_FILES([Makefile etc/Makefile include/Makefile src/Makefile ])
-AC_CONFIG_FILES([doc/Makefile])
+AC_CONFIG_FILES([Makefile etc/Makefile include/Makefile lib/Makefile ])
+AC_CONFIG_FILES([src/Makefile doc/Makefile])
 
 # Hacer que la macro AC_OUTPUT ejecute el stript configure en cada
 # subdirectorio.
-AC_CONFIG_SUBDIRS([vendors/mt])
+AC_CONFIG_SUBDIRS([vendors/mt vendors/garpnet])
 
 
 # Genera la herramienta de la linea de comandos config.status y lo ejecuta.

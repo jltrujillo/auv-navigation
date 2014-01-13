@@ -36,6 +36,7 @@
 
 #include "garp/rtdb.h"
 #include "garp/mti-g.h"
+#include "garp/sharksoft.h"
 
 #include "garp/time-tracker.h"
 
@@ -133,6 +134,8 @@ int main(int argc, char *argv[]) {
 
 		struct time_tracker tracker;
 
+		struct sharksoft sharksoft;
+
 		/* Close FDs */
 		if (daemon_close_all(-1) < 0) {
 			daemon_log(LOG_ERR, "Failed to close all file descriptors: %s",
@@ -167,10 +170,9 @@ int main(int argc, char *argv[]) {
 		config_init(&cfg);
 
 		/* Read the file. If there is an error, report it and exit. */
-		if(!config_read_file(&cfg, CONFIG_FILE))
-		{
+		if (!config_read_file(&cfg, CONFIG_FILE)) {
 			daemon_log(LOG_ERR, "%s:%d - %s\n", config_error_file(&cfg),
-				config_error_line(&cfg), config_error_text(&cfg));
+					config_error_line(&cfg), config_error_text(&cfg));
 			daemon_retval_send(4);
 			goto finish;
 		}
@@ -180,16 +182,19 @@ int main(int argc, char *argv[]) {
 		/* Inicializar el controlador de estado de la MTi-G, enlazando
 		 * la RTDB como area de almacenamiento */
 		setting = config_lookup(&cfg, "mti_g");
-		daemon_log(LOG_INFO, "MTi-G state controller config found");
 		mti_g_init(&mti_g, setting, &(rtdb.imu), &(rtdb.gps));
 
 		daemon_log(LOG_INFO, "MTi-G state controller inited");
 
 		setting = config_lookup(&cfg, "time_tracker");
-		daemon_log(LOG_INFO, "Time Tracker service config found");
 		time_tracker_init(&tracker, setting);
 
 		daemon_log(LOG_INFO, "Time Tracker service inited");
+
+		setting = config_lookup(&cfg, "sharksoft");
+		sharksoft_init(&sharksoft, setting, &(rtdb.imu), &(rtdb.gps));
+
+		daemon_log(LOG_INFO, "Sharksoft data provider service inited");
 
 		/* Send OK to parent process */
 		daemon_retval_send(0);
@@ -202,6 +207,7 @@ int main(int argc, char *argv[]) {
 		FD_SET(fd, &fds);
 
 		FD_SET(mti_g.fd, &fds);
+		FD_SET(sharksoft.fd, &fds);
 
 		while (!quit) {
 			fd_set fds2 = fds;
@@ -248,7 +254,17 @@ int main(int argc, char *argv[]) {
 			/* Procesar señales desde la MTi-G */
 			if (FD_ISSET(mti_g.fd, &fds2)) {
 				mti_g_handle_request(&mti_g);
-				time_tracker_handle(&tracker);
+
+				//sharksoft_handle_getdata(&sharksoft);
+
+				//time_tracker_handle(&tracker);
+			}
+
+			/* Procesar señales desde el HMI Sharksoft */
+			if (FD_ISSET(sharksoft.fd, &fds2)) {
+				//time_tracker_handle(&tracker);
+				sharksoft_handle_request(&sharksoft);
+
 			}
 		}
 

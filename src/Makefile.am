@@ -23,7 +23,7 @@ AM_CFLAGS = -std=c99 -Wall -Werror
 
 # Opciones para el pre-procesador del compilador del lenguaje C
 AM_CPPFLAGS = -I$(top_srcdir)/include 
-AM_CPPFLAGS += -DCONFIG_FILE="\"$(sysconfdir)/auv-navigation.cfg\""
+AM_CPPFLAGS += -DCONFIG_PATH="\"$(sysconfdir)/\""
 
 AM_CPPFLAGS += -I$(top_srcdir)/vendors/mt/include
 AM_CPPFLAGS += -I$(top_srcdir)/vendors/garpnet/include

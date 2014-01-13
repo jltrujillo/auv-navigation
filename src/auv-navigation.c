@@ -18,6 +18,7 @@
  * Foundation, Inc., 59 Temple Place – Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <assert.h>
 #include <signal.h>
 #include <errno.h>
 #include <string.h>
@@ -44,9 +45,11 @@
  * se lo pasa al compilador el Makefile de este directorio. Esto permite
  * conocer el directorio de ficheros de configuración en tiempo de
  * compilación. */
-#ifndef CONFIG_FILE
-const char * CONFIG_FILE = "/etc/auv-navigation.cfg";
+#ifndef CONFIG_PATH
+const char * CONFIG_PATH = "/etc/";
 #endif
+
+const char * CONFIG_FILE = "auv-navigation.cfg";
 
 /** Punto de entrada de la aplicacion de navegacion.
  * @return Estado de la aplicacion al terminar.
@@ -123,6 +126,8 @@ int main(int argc, char *argv[]) {
 		int fd, quit = 0;
 		fd_set fds;
 
+		char * config_file;
+
 		config_t cfg;
 		config_setting_t *setting;
 
@@ -168,6 +173,12 @@ int main(int argc, char *argv[]) {
 
 		/* cargar la configuración de la aplicación */
 		config_init(&cfg);
+
+		config_file = malloc(strlen(CONFIG_PATH) + strlen(CONFIG_FILE) + 1);
+		assert(config_file != NULL);
+		strcpy(config_file, CONFIG_PATH);
+		strcpy(config_file + strlen(CONFIG_PATH), CONFIG_FILE);
+
 
 		/* Read the file. If there is an error, report it and exit. */
 		if (!config_read_file(&cfg, CONFIG_FILE)) {
